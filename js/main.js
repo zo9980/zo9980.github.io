@@ -170,11 +170,9 @@ function playVideo() {
 
 // 색션 1,2 골프 공 애니메이션---------------------------
 
-// let golfBall = document.querySelector('.golf_ball'); // 골프 공 요소 선택
-// let section02 = document.querySelector('.section02_container'); // 섹션 02 요소 선택
-// let section03 = document.querySelector('.section03_container');
+let golfBall = document.querySelector('.golf_ball'); // 골프 공 요소 선택
 
-// // 섹션 2 애니메이션 ----------------
+// 섹션 2 애니메이션 ----------------
 var ani02 = gsap.timeline({
   scrollTrigger: {
     trigger: '.section02',
@@ -182,27 +180,25 @@ var ani02 = gsap.timeline({
     end: 'bottom top',
     scrub: 1,
     markers: true,
-    // onEnter: () => {
-    //   gsap.to(golfBall, {
-    //     x: 100, // 섹션 02로 이동할 때
-    //     y: 1100,
-    //     duration: 1,
-    //   });
-    // },
-    // onLeaveBack: () => {
-    //   gsap.to(golfBall, {
-    //     x: 0,
-    //     y: 0, // 섹션 01로 이동할 때
-    //     duration: 1,
-    //   });
-    // },
+    onEnter: () => {
+      gsap.to(golfBall, {
+        x: 100, // 섹션 02로 이동할 때
+        y: 1100,
+        duration: 1,
+        rotate: 360
+      });
+    },
+    onLeaveBack: () => {
+      gsap.to(golfBall, {
+        x: 0,
+        y: 0, // 섹션 01로 이동할 때
+        duration: 1,
+        rotate: 0,
+      });
+    },
   },
 });
-ani02.to('.golf_ball', {
-  x: 500,
-  y: 2000,
-  duration: 1,
-});
+
 ani02.fromTo(
   '.section02_the_greatest',
   { x: 0, y: -50, duration: 1, opacity: 0 },
@@ -217,32 +213,65 @@ ani02.fromTo(
   1
 );
 
-// // // 섹션 3 --------------------------------
+// -------------------------------------------------
+const section03GolfBall = document.querySelector('.section03_golf_ball'); // 골프 공 요소 선택
+
 var ani03 = gsap.timeline({
   scrollTrigger: {
     trigger: '.section03',
-    start: 'top center',
-    end: 'bottom top',
-    scrub: 1,
-    // pin: true,
-    markers: true,
-    // onEnter: () => {
-    //   gsap.to(golfBall, {
-    //     x: 500,
-    //     y: 2550,
-    //     duration: 1,
-    //     scale: 0.8,
-    //     // ease: 'power1.out',
-    //   });
-    // },
-    // onLeaveBack: () => {
-    //   gsap.to(golfBall, {
-    //     x: 100,
-    //     y: 1100, // 섹션 02로 이동할 때
-    //     duration: 1,
-    //     scale: 1,
-    //   });
-    // },
+    pin: true,
+    start: 'top top',
+    end: "+=2000",
+    onEnter: () => {
+      gsap.to(golfBall, {
+        duration: 1,
+        x: 420,
+        y: 2350,
+        scale: 0.8,
+        rotate: 720,
+        scrollTrigger: {
+          trigger: '.section03',
+          end: "+=2000",
+          markers: true,
+          pin: golfBall,
+        }
+      });
+    },
+    onEnterBack: () => {
+      golfBall.style.opacity = 1
+      section03GolfBall.style.opacity = 0
+      gsap.to(golfBall, {
+        duration: 0,
+        x: 420,
+        y: 2350,
+        scale: 0.8,
+        scrollTrigger: {
+          trigger: '.section03',
+          markers: true,
+          pin: golfBall,
+          end: "+=2000"
+        }
+      });
+    },
+    onLeave: () => {
+      golfBall.style.opacity = 0
+      section03GolfBall.style.opacity = 1
+    },
+    onLeaveBack: () => {
+      gsap.fromTo(golfBall,
+        {
+          x: 420,
+          y: 2350,
+          scale: 0.8,
+          duration: 1,
+        }, {
+          duration: 1,
+          x: 100,
+          y: 1100,
+          scale: 1,
+          rotate: 360,
+      });
+    },
   },
 });
 
@@ -273,6 +302,7 @@ ani03.fromTo(
   { x: 0, duration: 2, opacity: 1 },
   0
 );
+
 // //섹션 4-----------------------------
 
 var ani04 = gsap.timeline({
