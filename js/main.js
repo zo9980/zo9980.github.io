@@ -144,8 +144,7 @@ var ani00 = gsap.timeline({
     end: '+=2000',
     // scrub: 1,
     pin: true,
-    markers: true,
-    onComplete: playVideo,
+    // markers: true,
   },
 });
 
@@ -163,10 +162,10 @@ ani00.fromTo(
   0
 );
 
-function playVideo() {
-  const video = document.getElementById('fullscreen-video');
-  video.play();
-}
+// function playVideo() {
+//   const video = document.getElementById('fullscreen-video');
+//   video.play();
+// }
 
 // 색션 1,2 골프 공 애니메이션---------------------------
 
@@ -179,13 +178,13 @@ var ani02 = gsap.timeline({
     start: 'top center',
     end: 'bottom top',
     scrub: 1,
-    markers: true,
+    // markers: true,
     onEnter: () => {
       gsap.to(golfBall, {
         x: 100, // 섹션 02로 이동할 때
         y: 1100,
         duration: 1,
-        rotate: 360
+        rotate: 360,
       });
     },
     onLeaveBack: () => {
@@ -221,7 +220,8 @@ var ani03 = gsap.timeline({
     trigger: '.section03',
     pin: true,
     start: 'top top',
-    end: "+=2000",
+    end: '+=2000',
+    scrub: 2,
     onEnter: () => {
       gsap.to(golfBall, {
         duration: 1,
@@ -231,46 +231,50 @@ var ani03 = gsap.timeline({
         rotate: 720,
         scrollTrigger: {
           trigger: '.section03',
-          end: "+=2000",
-          markers: true,
+          end: '+=2000',
+          // markers: true,
           pin: golfBall,
-        }
+        },
       });
     },
     onEnterBack: () => {
-      golfBall.style.opacity = 1
-      section03GolfBall.style.opacity = 0
+      golfBall.style.opacity = 1;
+      section03GolfBall.style.opacity = 0;
       gsap.to(golfBall, {
         duration: 0,
         x: 420,
         y: 2350,
         scale: 0.8,
+        rotate: 720,
         scrollTrigger: {
           trigger: '.section03',
-          markers: true,
+          // markers: true,
           pin: golfBall,
-          end: "+=2000"
-        }
+          end: '+=2000',
+        },
       });
     },
     onLeave: () => {
-      golfBall.style.opacity = 0
-      section03GolfBall.style.opacity = 1
+      golfBall.style.opacity = 0;
+      section03GolfBall.style.opacity = 1;
     },
     onLeaveBack: () => {
-      gsap.fromTo(golfBall,
+      gsap.fromTo(
+        golfBall,
         {
           x: 420,
           y: 2350,
           scale: 0.8,
           duration: 1,
-        }, {
+        },
+        {
           duration: 1,
           x: 100,
           y: 1100,
           scale: 1,
           rotate: 360,
-      });
+        }
+      );
     },
   },
 });
@@ -290,6 +294,13 @@ ani03.fromTo(
 );
 
 ani03.fromTo(
+  '.section03_o',
+  { y: 0, opacity: 1 },
+  { y: 50, opacity: 0, duration: 0.6 },
+  0
+);
+
+ani03.fromTo(
   '.section03_text',
   { x: 0, duration: 2, opacity: 0 },
   { x: 0, duration: 2, opacity: 1 },
@@ -300,7 +311,7 @@ ani03.fromTo(
   '.shadow',
   { x: 0, duration: 2, opacity: 0 },
   { x: 0, duration: 2, opacity: 1 },
-  0
+  1
 );
 
 // //섹션 4-----------------------------
@@ -309,68 +320,38 @@ var ani04 = gsap.timeline({
   scrollTrigger: {
     trigger: '.section04',
     start: 'top top',
-    end: 'bottom top',
-    scrub: true,
+    end: '+=1000',
+    scrub: 2,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
 // ani04.fromTo(
-//   '.section04_pro',
-//   { y: 30, opacity: 0, duration: 1 },
-//   { y: 0, opacity: 1, duration: 1 },
+//   '.section04_v1',
+//   { x: 50, opacity: 0, duration: 0.1 },
+//   { x: 0, opacity: 1, duration: 0.1 },
 //   0
 // );
 
 ani04.fromTo(
-  '.section04_v1',
-  { x: 50, opacity: 0, duration: 0.1 },
-  { x: 0, opacity: 1, duration: 0.1 },
+  '.section04_pro',
+  { x: -50, opacity: 0, duration: 0.2 },
+  { x: 0, opacity: 1, duration: 0.2 },
   0
 );
-
-// ani04.fromTo(
-//   '.section04_new',
-//   { x: 50, y: 0, duration: 1, opacity: 0 },
-//   { x: 0, y: 0, duration: 1, opacity: 1 },
-//   1
-// );
-
-// ani04.fromTo(
-//   '.section04_engine',
-//   { x: 50, y: 0, duration: 1, opacity: 0 },
-//   { x: 0, y: 0, duration: 1, opacity: 1 },
-//   0
-// );
-
-// ani04.fromTo(
-//   '.section04_video',
-//   { x: 0, y: 0, duration: 0.5, opacity: 0 },
-//   { x: 0, y: 0, duration: 0.5, opacity: 1 },
-//   0
-// );
-
-// ani04.fromTo(
-//   '.section04_text',
-//   { x: 0, y: 30, duration: 1, opacity: 0 },
-//   { x: 0, y: 0, duration: 1, opacity: 1 },
-//   0
-// );
-
-// ani04.fromTo(
-//   '.section04_index',
-//   { x: 100, y: 0, duration: 0.5, opacity: 0 },
-//   { x: 0, y: 0, duration: 0.5, opacity: 1 },
-//   1
-// );
-
-// ani04.fromTo(
-//   '.section04_line',
-//   { x: 100, y: 0, duration: 0.5, opacity: 0 },
-//   { x: 0, y: 0, duration: 0.5, opacity: 1 },
-//   1
-// );
+ani04.fromTo(
+  '.section04_new',
+  { x: 50, opacity: 0, duration: 0.2 },
+  { x: 0, opacity: 1, duration: 0.2 },
+  0
+);
+ani04.fromTo(
+  '.section04_engine',
+  { x: -50, opacity: 0, duration: 0.2 },
+  { x: 0, opacity: 1, duration: 0.2 },
+  0
+);
 
 // //섹션 5 가로 스크롤------------------------------
 
@@ -390,9 +371,9 @@ gsap.to(sections, {
     trigger: '.scroll_container01',
     start: 'top top', //첫번쨰 옵션은 요소의 위치, 두번쨰 옵션은 뷰포트 위치
     end: () => '+=' + document.querySelector('.scroll_container01').offsetWidth,
-    markers: true,
+    // markers: true,
     pin: true, // trigger에 지정된 요소의 시작점과 끝점 사이에 브라우저 고정
-    scrub: 0.5, // 스크롤 속도에 따라 애니메이션 속도가 변경됨
+    scrub: true, // 스크롤 속도에 따라 애니메이션 속도가 변경됨
   },
 });
 
@@ -402,22 +383,22 @@ let panel1Timeline = gsap.timeline({
     trigger: '.section05', // 여기에 해당 요소의 클래스나 ID를 넣어주세요.
     start: 'top top', // 시작 시점
     end: '+=500', // 끝 시점
-    scrub: 1.5, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    scrub: 1, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
+    // markers: true,
   },
 });
 
 panel1Timeline.fromTo(
   '.section05_text1', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: -50 }, // 시작 스타일
-  { opacity: 1, y: 0, duration: 1 },
+  { opacity: 0, x: 200 }, // 시작 스타일
+  { opacity: 1, x: 0, duration: 1 },
   0 // 끝 스타일 및 애니메이션 지속 시간
 );
 panel1Timeline.fromTo(
   '.section05_text2', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: -50 }, // 시작 스타일
-  { opacity: 1, y: 0, duration: 1 },
-  2 // 끝 스타일 및 애니메이션 지속 시간
+  { opacity: 0, x: -200 }, // 시작 스타일
+  { opacity: 1, x: 0, duration: 1 },
+  0 // 끝 스타일 및 애니메이션 지속 시간
 );
 
 // --------섹션 가로 2---------------
@@ -427,21 +408,21 @@ let panel2Timeline = gsap.timeline({
     start: 'top top', // 시작 시점
     end: '+=3000', // 끝 시점
     scrub: 1, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    // markers: true,
   },
 });
 
 panel2Timeline.fromTo(
   '.section06_text1', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: -100 }, // 시작 스타일
-  { opacity: 1, y: 0, duration: 3 },
+  { opacity: 0, x: -200 }, // 시작 스타일
+  { opacity: 1, x: 0, duration: 3 },
   16 // 끝 스타일 및 애니메이션 지속 시간
 );
 panel2Timeline.fromTo(
   '.section06_text2', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: -100 }, // 시작 스타일
-  { opacity: 1, y: 0, duration: 3 },
-  22 // 끝 스타일 및 애니메이션 지속 시간
+  { opacity: 0, x: -200 }, // 시작 스타일
+  { opacity: 1, x: 0, duration: 3 },
+  16 // 끝 스타일 및 애니메이션 지속 시간
 );
 
 // --------섹션 가로 3---------------
@@ -451,21 +432,21 @@ let panel3Timeline = gsap.timeline({
     start: 'top top', // 시작 시점
     end: '+=6000', // 끝 시점
     scrub: 1, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    // markers: true,
   },
 });
 
 panel3Timeline.fromTo(
   '.section07_text1', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: -100 }, // 시작 스타일
-  { opacity: 1, y: 0, duration: 3 },
+  { opacity: 0, x: 200 }, // 시작 스타일
+  { opacity: 1, x: 0, duration: 3 },
   30 // 끝 스타일 및 애니메이션 지속 시간
 );
 panel3Timeline.fromTo(
   '.section07_text2', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: -100 }, // 시작 스타일
-  { opacity: 1, y: 0, duration: 3 },
-  36 // 끝 스타일 및 애니메이션 지속 시간
+  { opacity: 0, x: -200 }, // 시작 스타일
+  { opacity: 1, x: 0, duration: 3 },
+  30 // 끝 스타일 및 애니메이션 지속 시간
 );
 
 // 섹션 8 애니----------
@@ -478,7 +459,7 @@ var ani08_img = gsap.timeline({
     end: '+=2000',
     scrub: 6,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
@@ -508,28 +489,28 @@ var ani09 = gsap.timeline({
     end: 'bottom top',
     scrub: 1,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
 ani09.fromTo(
   '.section09_scotty',
-  { y: -50, opacity: 0, duration: 0.5 },
-  { y: 0, opacity: 1, duration: 0.5 },
+  { x: -50, opacity: 0, duration: 0.5 },
+  { x: 0, opacity: 1, duration: 0.5 },
   0
 );
 ani09.fromTo(
   '.section09_cameron',
-  { y: -50, opacity: 0, duration: 0.5 },
-  { y: 0, opacity: 1, duration: 0.5 },
+  { x: -50, opacity: 0, duration: 0.5 },
+  { x: 0, opacity: 1, duration: 0.5 },
   0
 );
-ani09.fromTo(
-  '.section09_putter',
-  { y: -70, opacity: 0, duration: 0.5 },
-  { y: 0, opacity: 1, duration: 0.5 },
-  1
-);
+// ani09.fromTo(
+//   '.section09_putter',
+//   { opacity: 0, duration: 0.5 },
+//   { opacity: 1, duration: 0.5 },
+//   1
+// );
 
 // 섹션 10------------------------------
 
@@ -540,7 +521,7 @@ var ani10 = gsap.timeline({
     end: '+=3500',
     scrub: 3,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
@@ -635,7 +616,7 @@ var ani11 = gsap.timeline({
     end: '+=3000',
     scrub: 2,
     pin: true,
-    markers: true,
+    // markers: true,
     onEnter: playVideo,
   },
 });
@@ -718,7 +699,7 @@ gsap.to(section02, {
     trigger: '.scroll_container02',
     start: 'top top', //첫번쨰 옵션은 요소의 위치, 두번쨰 옵션은 뷰포트 위치
     end: () => '+=' + document.querySelector('.scroll_container02').offsetWidth,
-    markers: true,
+    // markers: true,
     pin: true, // trigger에 지정된 요소의 시작점과 끝점 사이에 브라우저 고정
     scrub: 1.5, // 스크롤 속도에 따라 애니메이션 속도가 변경됨
   },
@@ -731,7 +712,7 @@ let panel4Timeline = gsap.timeline({
     start: 'top top', // 시작 시점
     end: '+=500', // 끝 시점
     scrub: 1.5, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    // markers: true,
   },
 });
 
@@ -749,7 +730,7 @@ let panel5Timeline = gsap.timeline({
     start: 'top top', // 시작 시점
     end: '+=3000', // 끝 시점
     scrub: 1, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    // markers: true,
   },
 });
 
@@ -767,7 +748,7 @@ let panel6Timeline = gsap.timeline({
     start: 'top top', // 시작 시점
     end: '+=6000', // 끝 시점
     scrub: 1, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    // markers: true,
   },
 });
 
@@ -791,43 +772,43 @@ var ani15 = gsap.timeline({
   scrollTrigger: {
     trigger: '.section15',
     start: 'top top',
-    end: '+=3500',
+    end: 'bottom top',
     scrub: 1,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
-ani15.fromTo(
-  '.section15_comma',
-  { y: -50, opacity: 0, duration: 1 },
-  { y: 0, opacity: 1, duration: 1 },
-  0
-);
+// ani15.fromTo(
+//   '.section15_comma',
+//   { y: -50, opacity: 0, duration: 1 },
+//   { y: 0, opacity: 1, duration: 1 },
+//   0
+// );
 
 ani15.fromTo(
   '.section15_text1',
   { y: -50, opacity: 0, duration: 1 },
   { y: 0, opacity: 1, duration: 1 },
-  1
+  0
 );
 ani15.fromTo(
   '.section15_text2',
   { y: -50, opacity: 0, duration: 1 },
   { y: 0, opacity: 1, duration: 1 },
-  1
+  0
 );
 ani15.fromTo(
   '.section15_text3',
   { y: -50, opacity: 0, duration: 1 },
   { y: 0, opacity: 1, duration: 1 },
-  2
+  0
 );
 ani15.fromTo(
   '.section15_text4',
   { y: -50, opacity: 0, duration: 1 },
   { y: 0, opacity: 1, duration: 1 },
-  2
+  1
 );
 
 // 섹션 16------------------------------
@@ -836,38 +817,38 @@ var ani16 = gsap.timeline({
   scrollTrigger: {
     trigger: '.section16',
     start: 'top top',
-    end: '+=2000',
+    end: 'bottom top',
     scrub: 1,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
 ani16.fromTo(
   '.section16_vokey',
-  { x: 50, opacity: 0, duration: 1 },
-  { x: 0, opacity: 1, duration: 1 },
-  0
+  { x: 50, opacity: 0, duration: 0.5 },
+  { x: 0, opacity: 1, duration: 0.5 },
+  0.5
 );
 
 ani16.fromTo(
   '.section16_choose',
-  { x: 50, opacity: 0, duration: 1 },
-  { x: 0, opacity: 1, duration: 1 },
+  { x: 50, opacity: 0, duration: 0.5 },
+  { x: 0, opacity: 1, duration: 0.5 },
   0
 );
-ani16.fromTo(
-  '.section16_sm9',
-  { x: 50, opacity: 0, duration: 1 },
-  { x: 0, opacity: 1, duration: 1 },
-  1
-);
-ani16.fromTo(
-  '.section16_wedge',
-  { x: 50, opacity: 0, duration: 1 },
-  { x: 0, opacity: 1, duration: 1 },
-  1
-);
+// ani16.fromTo(
+//   '.section16_sm9',
+//   { x: 50, opacity: 0, duration: 1 },
+//   { x: 0, opacity: 1, duration: 1 },
+//   1
+// );
+// ani16.fromTo(
+//   '.section16_wedge',
+//   { x: 50, opacity: 0, duration: 1 },
+//   { x: 0, opacity: 1, duration: 1 },
+//   1
+// );
 
 // 섹션 17------------------------------
 
@@ -878,14 +859,14 @@ var ani17 = gsap.timeline({
     end: '+=1000',
     scrub: 1,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
 ani17.fromTo(
   '.section17_closer',
-  { y: 30, opacity: 0, duration: 0.3 },
-  { y: 0, opacity: 1, duration: 0.3 },
+  { y: 0, opacity: 0, duration: 1 },
+  { y: 0, opacity: 1, duration: 1 },
   0
 );
 
@@ -898,8 +879,8 @@ ani17.fromTo(
 
 ani17.fromTo(
   '.section17_box',
-  { clipPath: 'inset(0% 100% 0% 0%)', duration: 0.2 },
-  { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.2 },
+  { clipPath: 'inset(0% 100% 0% 0%)', duration: 0.5 },
+  { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5 },
   0
 );
 
@@ -912,40 +893,40 @@ var ani18 = gsap.timeline({
     end: '+=3000',
     scrub: 2,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
 ani18.fromTo(
   '.section18_text1',
-  { y: 50, opacity: 0, duration: 0.5 },
-  { y: 0, opacity: 1, duration: 0.5 },
+  { x: -150, opacity: 0, duration: 0.3 },
+  { x: 0, opacity: 1, duration: 0.3 },
   0
 );
 ani18.fromTo(
   '.section18_text2',
-  { y: 50, opacity: 0, duration: 0.5 },
-  { y: 0, opacity: 1, duration: 0.5 },
-  1
+  { x: 150, opacity: 0, duration: 0.3 },
+  { x: 0, opacity: 1, duration: 0.3 },
+  0.5
 );
 ani18.fromTo(
   '.section18_text3',
-  { y: 50, opacity: 0, duration: 0.5 },
-  { y: 0, opacity: 1, duration: 0.5 },
-  2
+  { x: -150, opacity: 0, duration: 0.3 },
+  { x: 0, opacity: 1, duration: 0.3 },
+  1
 );
 ani18.fromTo(
   '.section18_text4',
   { y: 50, opacity: 0, duration: 0.5 },
   { y: 0, opacity: 1, duration: 0.5 },
-  3
+  1.5
 );
 
 ani18.fromTo(
   '.section18_img',
   { y: 50, opacity: 0, duration: 0.5 },
   { y: 0, opacity: 1, duration: 0.5 },
-  3
+  1.5
 );
 
 // 섹션 19------------------------------
@@ -954,47 +935,47 @@ var ani19 = gsap.timeline({
   scrollTrigger: {
     trigger: '.section19',
     start: 'top top',
-    end: '+=3000',
+    end: '+=1000',
     scrub: 2,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
-ani19.fromTo(
-  '.section19_img1',
-  { x: 50, y: 0, opacity: 0, duration: 0.5 },
-  { x: 0, y: 0, opacity: 1, duration: 0.5 },
-  0
-);
+// ani19.fromTo(
+//   '.section19_img1',
+//   { x: 50, y: 0, opacity: 0, duration: 0.5 },
+//   { x: 0, y: 0, opacity: 1, duration: 0.5 },
+//   0
+// );
 
 ani19.fromTo(
   '.section19_text1',
-  { x: 0, y: 50, opacity: 0, duration: 0.5 },
+  { x: -100, y: 0, opacity: 0, duration: 0.5 },
   { x: 0, y: 0, opacity: 1, duration: 0.5 },
   0
 );
 
 ani19.fromTo(
   '.section19_shot',
-  { x: 0, y: 50, opacity: 0, duration: 0.5 },
-  { x: 0, y: 0, opacity: 1, duration: 0.5 },
-  0
-);
-
-ani19.fromTo(
-  '.section19_text2',
-  { x: 0, y: 50, opacity: 0, duration: 0.5 },
+  { x: -100, y: 0, opacity: 0, duration: 0.5 },
   { x: 0, y: 0, opacity: 1, duration: 0.5 },
   0.5
 );
 
-ani19.fromTo(
-  '.section19_img2',
-  { x: 0, y: 50, opacity: 0, duration: 0.5 },
-  { x: 0, y: 0, opacity: 1, duration: 0.5 },
-  0.5
-);
+// ani19.fromTo(
+//   '.section19_text2',
+//   { x: 0, y: 50, opacity: 0, duration: 0.5 },
+//   { x: 0, y: 0, opacity: 1, duration: 0.5 },
+//   0.5
+// );
+
+// ani19.fromTo(
+//   '.section19_img2',
+//   { x: 0, y: 50, opacity: 0, duration: 0.5 },
+//   { x: 0, y: 0, opacity: 1, duration: 0.5 },
+//   0.5
+// );
 
 // 섹션 20------------------------------
 
@@ -1002,24 +983,24 @@ var ani20 = gsap.timeline({
   scrollTrigger: {
     trigger: '.section20',
     start: 'top top',
-    end: '+=2000',
-    scrub: 1,
+    end: '+=1000',
+    scrub: 2,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
 ani20.fromTo(
   '.section20_choose',
-  { x: 0, y: 50, opacity: 0, duration: 0.1 },
-  { x: 0, y: 0, opacity: 1, duration: 0.1 },
+  { x: -100, y: 0, opacity: 0, duration: 0.5 },
+  { x: 0, y: 0, opacity: 1, duration: 0.5 },
   0
 );
 
 ani20.fromTo(
   '.section20_closer',
-  { x: 0, y: 50, opacity: 0, duration: 0.1 },
-  { x: 0, y: 0, opacity: 1, duration: 0.1 },
+  { x: 100, y: 0, opacity: 0, duration: 0.5 },
+  { x: 0, y: 0, opacity: 1, duration: 0.5 },
   0
 );
 
@@ -1041,7 +1022,7 @@ gsap.to(section03, {
     trigger: '.scroll_container03',
     start: 'top top', //첫번쨰 옵션은 요소의 위치, 두번쨰 옵션은 뷰포트 위치
     end: () => '+=' + document.querySelector('.scroll_container03').offsetWidth,
-    markers: true,
+    // markers: true,
     pin: true, // trigger에 지정된 요소의 시작점과 끝점 사이에 브라우저 고정
     scrub: 1.5, // 스크롤 속도에 따라 애니메이션 속도가 변경됨
   },
@@ -1054,13 +1035,13 @@ let panel7Timeline = gsap.timeline({
     start: 'top top', // 시작 시점
     end: '+=500', // 끝 시점
     scrub: 1.5, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    // markers: true,
   },
 });
 
 panel7Timeline.fromTo(
   '.section21_always', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: 70 }, // 시작 스타일
+  { opacity: 0, y: 0, duration: 3 }, // 시작 스타일
   { opacity: 1, y: 0, duration: 3 },
   0 // 끝 스타일 및 애니메이션 지속 시간
 );
@@ -1072,20 +1053,20 @@ let panel8Timeline = gsap.timeline({
     start: 'top top', // 시작 시점
     end: '+=3000', // 끝 시점
     scrub: 1, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    // markers: true,
   },
 });
 
 panel8Timeline.fromTo(
   '.section22_alotof', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: 70 }, // 시작 스타일
+  { opacity: 0, y: 0, duration: 3 }, // 시작 스타일
   { opacity: 1, y: 0, duration: 3 },
   10 // 끝 스타일 및 애니메이션 지속 시간
 );
 
 panel8Timeline.fromTo(
   '.section22_intothe', // 요소 선택자를 여기에 넣어주세요.
-  { opacity: 0, y: 70 }, // 시작 스타일
+  { opacity: 0, y: 0, duration: 3 }, // 시작 스타일
   { opacity: 1, y: 0, duration: 3 },
   16 // 끝 스타일 및 애니메이션 지속 시간
 );
@@ -1097,7 +1078,7 @@ let panel9Timeline = gsap.timeline({
     start: 'top top', // 시작 시점
     end: '+=6000', // 끝 시점
     scrub: 1, // 스크롤 속도에 따른 애니메이션의 부드러움 정도
-    markers: true, // ScrollTrigger에 대한 시각적인 마커 표시
+    // markers: true,
   },
 });
 
@@ -1124,7 +1105,7 @@ var ani24 = gsap.timeline({
     end: '+=3000',
     scrub: 1,
     pin: true,
-    markers: true,
+    // markers: true,
   },
 });
 
